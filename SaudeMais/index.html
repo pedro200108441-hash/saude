@@ -345,6 +345,41 @@
             border-color: #166534;
         }
 
+        /* TRANSIÇÕES */
+        a,
+        .btn,
+        .btn-outline,
+        #menu-links a,
+        .barra-acessibilidade button,
+        .barra-acessibilidade a,
+        input,
+        select,
+        textarea,
+        label.opcao {
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .features-grid .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .features-grid .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Quem prefere menos movimento no sistema não vê animações */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                transition: none !important;
+                animation: none !important;
+            }
+
+            html {
+                scroll-behavior: auto;
+            }
+        }
+
         /* RODAPÉ */
         footer {
             background: #0f172a;
@@ -389,6 +424,74 @@
             text-align: center;
             color: #94a3b8;
             font-size: 0.85rem;
+        }
+
+        /* NOTÍCIAS */
+        .secao-noticias {
+            margin-bottom: 1.5rem;
+        }
+
+        .dica-noticias {
+            font-size: 0.9rem;
+        }
+
+        .filtro-noticias {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .btn-filtro {
+            background: #ffffff;
+            color: #1d4ed8;
+            border: 2px solid #1d4ed8;
+            border-radius: 999px;
+            padding: 0.45rem 1.1rem;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .btn-filtro:hover {
+            background: #eff6ff;
+        }
+
+        .btn-filtro[aria-pressed="true"] {
+            background: #1d4ed8;
+            color: #ffffff;
+        }
+
+        .contador {
+            font-size: 0.9rem;
+        }
+
+        .noticia-info {
+            font-size: 0.85rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .etiqueta {
+            display: inline-block;
+            background: #eff6ff;
+            color: #1e3a8a;
+            border: 1px solid #93c5fd;
+            border-radius: 999px;
+            padding: 0.1rem 0.6rem;
+            font-weight: 700;
+            margin-right: 0.4rem;
+        }
+
+        .btn-ler-mais {
+            background: none;
+            border: none;
+            color: #1d4ed8;
+            font-size: 1rem;
+            font-weight: 700;
+            text-decoration: underline;
+            cursor: pointer;
+            padding: 0.25rem 0;
         }
 
         /* HERO SECTION */
@@ -634,12 +737,59 @@
             <a href="./como-funciona.html" class="btn-outline">Ver explicação completa</a>
         </section>
 
+
+
+        <!-- NOTÍCIAS -->
+        <section class="secao-noticias" aria-labelledby="titulo-noticias">
+            <h2 id="titulo-noticias">Notícias do projeto</h2>
+            <p class="dica-noticias">Notícias de exemplo do projeto acadêmico.</p>
+            <div class="filtro-noticias" role="group" aria-label="Filtrar notícias por assunto">
+                <button type="button" class="btn-filtro" data-filtro="todas" aria-pressed="true">Todas</button>
+                <button type="button" class="btn-filtro" data-filtro="projeto" aria-pressed="false">Projeto</button>
+                <button type="button" class="btn-filtro" data-filtro="comunidade" aria-pressed="false">Comunidade</button>
+                <button type="button" class="btn-filtro" data-filtro="saude" aria-pressed="false">Saúde</button>
+                <button type="button" class="btn-filtro" data-filtro="parcerias" aria-pressed="false">Parcerias</button>
+            </div>
+            <p id="contadorNoticias" class="contador" role="status" aria-live="polite"></p>
+            <div class="features-grid">
+            <article class="card noticia" data-categoria="projeto">
+                <p class="noticia-info"><span class="etiqueta">Projeto</span> 10/11/2026</p>
+                <h3>Primeira rota segura mapeada na Vila Esperança</h3>
+                <p>Moradores e voluntários percorreram as ruas e marcaram escadas, buracos e calçadas boas até a UBS.</p>
+                <p id="noticia-mais-1" class="noticia-mais" hidden>O caminho pela Avenida Principal foi escolhido como rota segura, e a escadaria da Viela 3 ficou marcada para evitar. O resultado já está na página Mapa.</p>
+                <button type="button" class="btn-ler-mais" aria-expanded="false" aria-controls="noticia-mais-1">Ler mais</button>
+            </article>
+            <article class="card noticia" data-categoria="comunidade">
+                <p class="noticia-info"><span class="etiqueta">Comunidade</span> 03/11/2026</p>
+                <h3>Mutirão reúne 25 novos voluntários</h3>
+                <p>Vizinhos, estudantes e motoristas participaram da primeira orientação de como acompanhar idosos e PCDs.</p>
+                <p id="noticia-mais-2" class="noticia-mais" hidden>Na orientação, os voluntários aprenderam a oferecer o braço, avisar degraus, ajudar a entrar no carro e respeitar o ritmo de cada pessoa.</p>
+                <button type="button" class="btn-ler-mais" aria-expanded="false" aria-controls="noticia-mais-2">Ler mais</button>
+            </article>
+            <article class="card noticia" data-categoria="saude">
+                <p class="noticia-info"><span class="etiqueta">Saúde</span> 27/10/2026</p>
+                <h3>Dia de vacina no posto? Peça o transporte antes</h3>
+                <p>Em dias de campanha, os postos ficam mais cheios. Peça o transporte com pelo menos 2 dias de antecedência.</p>
+                <p id="noticia-mais-3" class="noticia-mais" hidden>Leve documento com foto, Cartão SUS e a caderneta de vacinação. O acompanhante pode esperar com você na fila.</p>
+                <button type="button" class="btn-ler-mais" aria-expanded="false" aria-controls="noticia-mais-3">Ler mais</button>
+            </article>
+            <article class="card noticia" data-categoria="parcerias">
+                <p class="noticia-info"><span class="etiqueta">Parcerias</span> 20/10/2026</p>
+                <h3>Associação de Moradores vira ponto de apoio</h3>
+                <p>O espaço oferece cadeiras, água e banheiro acessível para quem precisa descansar no caminho até o posto.</p>
+                <p id="noticia-mais-4" class="noticia-mais" hidden>A parceria também cede a sala para as orientações de voluntários. Quer ser parceiro? Veja a página Contato e Parcerias.</p>
+                <button type="button" class="btn-ler-mais" aria-expanded="false" aria-controls="noticia-mais-4">Ler mais</button>
+            </article>
+            </div>
+        </section>
+
         <!-- CARDS DE DESTAQUE -->
         <h2>Informação e segurança em um só lugar</h2>
         <div class="features-grid">
             <div class="card"><span class="icone" aria-hidden="true">🗺️</span><h3>Mapa de rotas seguras</h3><p>Caminhos acessíveis, trechos difíceis e pontos de apoio da comunidade.</p><a href="./mapa.html">Abrir o mapa &rarr;</a></div>
             <div class="card"><span class="icone" aria-hidden="true">🏥</span><h3>Postos de saúde</h3><p>Endereço, telefone, horário e acessibilidade de cada posto.</p><a href="./unidades.html">Ver postos &rarr;</a></div>
             <div class="card"><span class="icone" aria-hidden="true">🛡️</span><h3>Segurança</h3><p>Como reconhecer um voluntário, cuidados no transporte e canais de denúncia.</p><a href="./seguranca.html">Saber mais &rarr;</a></div>
+            <div class="card"><span class="icone" aria-hidden="true">💙</span><h3>Apoie com doações</h3><p>Combustível, cadeiras de rodas e andadores ajudam mais gente a chegar ao posto.</p><a href="./quero-ajudar.html#doacoes">Como doar &rarr;</a></div>
         </div>
     </main>
 
@@ -707,7 +857,7 @@
         // O botão do VLibras não recebe Tab, então liberamos ele para o teclado
         window.addEventListener('load', function () {
             const botaoLibras = document.querySelector('[vw-access-button]');
-            if (!botaoLibras) return;
+            if (!botaoLibras || !window.VLibras) return;
             botaoLibras.setAttribute('role', 'button');
             botaoLibras.setAttribute('tabindex', '0');
             botaoLibras.setAttribute('aria-label', 'Abrir tradutor de Libras (VLibras)');
@@ -719,17 +869,64 @@
             });
         });
     </script>
+    <!-- SCRIPT DAS NOTÍCIAS (FILTRO E LER MAIS) -->
+    <script>
+        const botoesFiltro = document.querySelectorAll('.btn-filtro');
+        const noticias = document.querySelectorAll('.noticia');
+        const contadorNoticias = document.getElementById('contadorNoticias');
+
+        // Mostra só as notícias do assunto escolhido
+        function filtrarNoticias(categoria) {
+            let total = 0;
+            noticias.forEach(function (noticia) {
+                const mostrar = categoria === 'todas' || noticia.getAttribute('data-categoria') === categoria;
+                noticia.style.display = mostrar ? 'block' : 'none';
+                if (mostrar) total++;
+            });
+
+            botoesFiltro.forEach(function (botao) {
+                botao.setAttribute('aria-pressed', botao.getAttribute('data-filtro') === categoria);
+            });
+
+            contadorNoticias.textContent = total === 1 ? '1 notícia' : total + ' notícias';
+        }
+
+        botoesFiltro.forEach(function (botao) {
+            botao.addEventListener('click', function () {
+                filtrarNoticias(botao.getAttribute('data-filtro'));
+            });
+        });
+
+        // Botão "Ler mais" mostra e esconde o resto da notícia
+        document.querySelectorAll('.btn-ler-mais').forEach(function (botao) {
+            botao.addEventListener('click', function () {
+                const texto = document.getElementById(botao.getAttribute('aria-controls'));
+                const aberto = botao.getAttribute('aria-expanded') === 'true';
+                texto.hidden = aberto;
+                botao.setAttribute('aria-expanded', !aberto);
+                botao.textContent = aberto ? 'Ler mais' : 'Ler menos';
+            });
+        });
+
+        filtrarNoticias('todas');
+    </script>
 
     <!-- SCRIPT OFICIAL DO VLIBRAS -->
-    <div vw class="enabled">
-        <div vw-access-button class="active"></div>
-        <div vw-plugin-wrapper>
-            <div class="vw-plugin-top-wrapper"></div>
-        </div>
-    </div>
+    <!-- O VLibras usa atributos próprios (vw), que o validador W3C não aceita no HTML.
+         Por isso a caixa dele é criada pelo JavaScript, antes de carregar o plugin. -->
+    <script>
+        const caixaLibras = document.createElement('div');
+        caixaLibras.setAttribute('vw', '');
+        caixaLibras.className = 'enabled';
+        caixaLibras.innerHTML = '<div vw-access-button class="active"></div>' +
+            '<div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div>';
+        document.body.appendChild(caixaLibras);
+    </script>
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
     <script>
-        new window.VLibras.Widget('https://vlibras.gov.br/app');
+        if (window.VLibras) {
+            new window.VLibras.Widget('https://vlibras.gov.br/app');
+        }
     </script>
 </body>
 </html>

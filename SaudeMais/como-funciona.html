@@ -345,6 +345,41 @@
             border-color: #166534;
         }
 
+        /* TRANSIÇÕES */
+        a,
+        .btn,
+        .btn-outline,
+        #menu-links a,
+        .barra-acessibilidade button,
+        .barra-acessibilidade a,
+        input,
+        select,
+        textarea,
+        label.opcao {
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .features-grid .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .features-grid .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Quem prefere menos movimento no sistema não vê animações */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                transition: none !important;
+                animation: none !important;
+            }
+
+            html {
+                scroll-behavior: auto;
+            }
+        }
+
         /* RODAPÉ */
         footer {
             background: #0f172a;
@@ -418,6 +453,28 @@
 
         .passo p {
             margin-bottom: 0;
+        }
+
+        /* VÍDEO */
+        .video-explicacao {
+            width: 100%;
+            max-width: 800px;
+            border-radius: 12px;
+            border: 1px solid #cbd5e1;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .video-explicacao:focus-within {
+            outline: 4px solid #f59e0b;
+            outline-offset: 3px;
+        }
+
+        .transcricao summary {
+            cursor: pointer;
+            font-weight: 700;
+            color: #1d4ed8;
+            margin-bottom: 0.5rem;
         }
 
         /* RESPONSIVO */
@@ -580,6 +637,26 @@
             </section>
         </div>
 
+        <!-- VÍDEO -->
+        <div class="card">
+            <h2>🎬 Vídeo: como pedir ajuda</h2>
+            <p>Vídeo curto, sem som, com o passo a passo em letras grandes.</p>
+            <video class="video-explicacao" controls preload="metadata" poster="./assets/video-capa.jpg" aria-describedby="transcricao-video">
+                <source src="./assets/video-como-pedir-ajuda.mp4" type="video/mp4">
+                Seu navegador não mostra vídeos. Leia o texto do vídeo logo abaixo.
+            </video>
+            <details class="transcricao">
+                <summary>Ler o texto do vídeo</summary>
+                <ol id="transcricao-video" class="lista">
+                    <li>Preencha o formulário Preciso de Ajuda. Um familiar também pode pedir por você.</li>
+                    <li>Diga o posto, o dia e do que precisa: cadeira de rodas, andador, apoio especial.</li>
+                    <li>Um voluntário da comunidade liga para confirmar e informa o nome e a foto dele.</li>
+                    <li>Ele busca você em casa, vai pela rota segura e traz você de volta.</li>
+                    <li>Emergência? Não espere: ligue 192 (SAMU).</li>
+                </ol>
+            </details>
+        </div>
+
         <div class="card">
             <h2>Tipos de auxílio</h2>
             <div class="features-grid">
@@ -659,7 +736,7 @@
         // O botão do VLibras não recebe Tab, então liberamos ele para o teclado
         window.addEventListener('load', function () {
             const botaoLibras = document.querySelector('[vw-access-button]');
-            if (!botaoLibras) return;
+            if (!botaoLibras || !window.VLibras) return;
             botaoLibras.setAttribute('role', 'button');
             botaoLibras.setAttribute('tabindex', '0');
             botaoLibras.setAttribute('aria-label', 'Abrir tradutor de Libras (VLibras)');
@@ -673,15 +750,21 @@
     </script>
 
     <!-- SCRIPT OFICIAL DO VLIBRAS -->
-    <div vw class="enabled">
-        <div vw-access-button class="active"></div>
-        <div vw-plugin-wrapper>
-            <div class="vw-plugin-top-wrapper"></div>
-        </div>
-    </div>
+    <!-- O VLibras usa atributos próprios (vw), que o validador W3C não aceita no HTML.
+         Por isso a caixa dele é criada pelo JavaScript, antes de carregar o plugin. -->
+    <script>
+        const caixaLibras = document.createElement('div');
+        caixaLibras.setAttribute('vw', '');
+        caixaLibras.className = 'enabled';
+        caixaLibras.innerHTML = '<div vw-access-button class="active"></div>' +
+            '<div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div>';
+        document.body.appendChild(caixaLibras);
+    </script>
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
     <script>
-        new window.VLibras.Widget('https://vlibras.gov.br/app');
+        if (window.VLibras) {
+            new window.VLibras.Widget('https://vlibras.gov.br/app');
+        }
     </script>
 </body>
 </html>
