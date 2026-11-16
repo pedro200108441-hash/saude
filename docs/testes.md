@@ -90,4 +90,4 @@ Prints: [`evidencias/home-desktop.png`](evidencias/home-desktop.png) e [`evidenc
 | Site abre com HTTPS | ✅ |
 | As 10 páginas abrem pela URL publicada | ✅ |
 | Teste no celular de verdade | ✅ |
-| Lighthouse (F12 › Lighthouse › Acessibilidade) | [preencher: nota] |
+| Lighthouse (F12 › Lighthouse › Acessibilidade) | ✅ |
