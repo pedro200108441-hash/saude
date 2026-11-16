@@ -50,7 +50,7 @@ Print: [`evidencias/teclado-foco.png`](evidencias/teclado-foco.png)
 | Recarregar depois de enviar | Pedido continua na lista (localStorage); rascunho apagado | ✅ |
 | Enviar *Quero Ajudar* vazio | "Falta corrigir 5 campos" | ✅ |
 | Enviar *Contato* vazio | "Falta corrigir 4 campos" | ✅ |
-| E-mail sem @ em *Quero Ajudar* | "E-mail inválido. Exemplo: nome@email.com." | [preencher] |
+| E-mail sem @ em *Quero Ajudar* | "E-mail inválido. Exemplo: nome@email.com." | ✅ |
 
 Prints: [`evidencias/form-erros.png`](evidencias/form-erros.png) e [`evidencias/form-rascunho.png`](evidencias/form-rascunho.png)
 
@@ -89,5 +89,5 @@ Prints: [`evidencias/home-desktop.png`](evidencias/home-desktop.png) e [`evidenc
 |-------|-----------|
 | Site abre com HTTPS | ✅ |
 | As 10 páginas abrem pela URL publicada | ✅ |
-| Teste no celular de verdade | [preencher] |
+| Teste no celular de verdade | ✅ |
 | Lighthouse (F12 › Lighthouse › Acessibilidade) | [preencher: nota] |
