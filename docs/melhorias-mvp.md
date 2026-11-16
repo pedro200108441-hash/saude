@@ -1,12 +1,5 @@
 # 🔧 Melhorias desde o MVP (1ª entrega)
 
-## Pontos apontados pelo professor na 1ª entrega
-
-| Ponto apontado | Como resolvemos | Antes | Depois |
-|----------------|-----------------|-------|--------|
-| [preencher] | [preencher] | [print] | [print] |
-| [preencher] | [preencher] | [print] | [print] |
-
 ## Outras melhorias da equipe
 
 | Antes (MVP) | Depois (versão final) |
@@ -18,6 +11,6 @@
 | Dados salvos só no formulário de contato | Rascunho e lista de enviados no localStorage nos 3 formulários |
 | — | Telefone e idade só com números; máscara `(11) 98765-4321` |
 | Campos com `outline: none` no foco (agendar.html) | Contorno amarelo e preto em todo item; site inteiro usável só com teclado |
-| [preencher: resultado do W3C no MVP] | 0 erros nas 10 páginas |
+| Não foi validado | 0 erros nas 10 páginas |
 | Sem notícias, doações ou multimídia | Notícias com filtro, área de doações, vídeo e mapa (iframe) |
 | Site publicado com a versão antiga | Novo repositório e deploy automático no Railway com HTTPS |
